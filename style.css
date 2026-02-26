@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+body { 
+  margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 40px; 
+    background: linear-gradient(to bottom, #333333, #222222, black);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.logo {
+    color: #f4efef;
+    font-size: 28px;
+    font-family: 'Playfair Display', serif;
+}
+
+.hamburger { 
+    background: none; 
+    border: none; 
+    cursor: pointer;
+    position: relative; 
+    z-index: 1000;      
+}
+
+.hamburger span { 
+    background-color: #f4efef;
+    display: block; 
+    width: 25px; 
+    height: 2px; 
+    margin: 6px 0;   
+}
+
+.section-description{
+  max-width: 672px;
+  margin: 0 auto;
+  color:#535353;
+  padding: 32px;
+}
+
+.section-description p{
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400; /* 数字を小さくして線を細くします */
+  font-size: 18px;   /* 大きさはお好みで */
+  letter-spacing: 0.1em; /* 少し文字の間隔を空ける */
+  color: #5a5858;
+}
+
+.section-description .about{
+  margin-top: 150px;
+  font-size: 24px;
+  color: #1a1a1a;
+  padding-top: 20px;
+}
+
+/* 1. 蝶々専用のアニメーション設定 */
+.about i {
+  display: inline-block; /* 動きをつけるために必須 */
+  animation: butterfly-flap 2s infinite ease-in-out; /* 2秒ごとに無限に繰り返す */
+  color: #b74e8a; 
+  margin: 0 10px;
+}
+
+/* 2. 右側の蝶々だけ少し動きのタイミングをずらす*/
+.about i:last-child {
+  animation-delay: 1s;
+}
+
+/* 3. 動きの内容（羽ばたきと、少し浮遊する感じ） */
+@keyframes butterfly-flap {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.2, 0.8) translateY(-5px); /* 少し横に広がって上に浮く */
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.introducion{
+  margin-bottom: 100px;
+}
+
+.section-body {
+  padding: 32px; 
+  background-image: url(images/gahag-0030284739-1.jpeg);
+  background-size:cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.band-image-container {
+  text-align: center; 
+  margin-top: 32px; 
+  margin-bottom: 32px;
+}
+
+.band-image {
+  max-width: 100%; 
+  height: auto; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/*以下メニューボタン用*/
+
+.mobile-menu {
+  position: fixed;
+  top: 0;         
+  left: 0;
+  width: 100%;
+  height: 100vh;  
+  background-color: rgba(0, 0, 0, 0.85); 
+  text-align: center;
+  z-index: 99;   
+  padding-top: 150px;
+
+  opacity: 0;            /* 最初は透明 */
+  visibility: hidden;    /* 最初は存在自体を隠す（クリック防止） */
+  transition: opacity 0.5s ease, visibility 0.5s; /* 0.5秒かけて変化 */
+}
+
+.mobile-menu.active {
+  opacity: 1;            /* 不透明にする */
+  visibility: visible;   /* 見えるようにする */
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu li {
+  margin-bottom: 20px;
+}
+
+.mobile-menu a {
+  color: white; 
+  text-decoration: none; 
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.mobile-menu a:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+
+
+
+/*以下Videoページ用*/
+
+.songs p {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400; 
+  font-size: 18px;   
+  letter-spacing: 0.1em; 
+  color: #f2b5de;
+}
+
+.songs {
+  margin-bottom: 30px;
+}
+
+/* ローディング画面全体 */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  z-index: 9999; /* 何よりも手前に */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+/* ロゴのスタイル（トップページと同じフォント） */
+.loader-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: white;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  animation: fade-up 1.5s forwards; /* 1.5秒かけて浮き出る */
+}
+
+/* 下に伸びる細い線の演出（エレガントに見せるコツ） */
+.loader-line {
+  width: 0;
+  height: 1px;
+  background-color: white;
+  margin-top: 10px;
+  animation: line-extend 1.5s forwards;
+}
+
+/* フェードアウト用のクラス（JSで付ける） */
+#loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* アニメーションの中身 */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes line-extend {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
